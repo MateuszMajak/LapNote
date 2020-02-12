@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Tracks{% endblock %}
+{% block content %}
+    <h2>Tracks</h2>
+    <p>
+      Hello
+      {% if user %}
+        {{ user.name | striptags }}
+      {% endif %}!
+
+        <p>This is the Tracks section. Here is the list of most of the tracks in the World. </p>
+    </p>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+
+     <table id='myTable' class="highlight">
+        <thead>
+          <tr>
+              <th>id</th>
+              <th>Name</th>
+              <th>Length (km)</th>
+          </tr>
+        </thead>
+
+        <tbody>
+           {% for row in value %}
+                <tr>
+                    <td>{{row.id}}</td>
+                    <td>{{row.Name}}</td>
+                    <td>{{row.Length}}</td>
+                </tr>
+           {% endfor %}
+        </tbody>
+      </table>
+
+<script>
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Tracks{% endblock %}
+{% block content %}
+    <h2>Lap Times</h2>
+    <p>
+      Hello
+      {% if user %}
+        {{ user.name | striptags }}
+      {% endif %}!
+
+        <p>This is the Lap Times section. Here is the list of all public Lap Times across the World. </p>
+    </p>
+     <table id='myTable' class="highlight">
+        <tbody>
+        {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+        {% endfor %}
+        </tbody>
+      </table>
+{% endblock %}

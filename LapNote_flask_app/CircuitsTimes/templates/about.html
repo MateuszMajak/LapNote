@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+{% block content %}
+    <h2>About</h2>
+    <p>
+      Hello on the About section
+      {% if user %}
+        {{ user.name | striptags }}
+      {% endif %}.
+    </p>
+    <p>Data used for Tracks database was scrapped from <a href = "https://www.racingcircuits.info"/>RacingCircuits<a/>.</p>
+    <p><font color = "black">Here is the other source - Cars information:</font></p><a href = "https://www.kaggle.com/CooperUnion/cardataset"/>Kaggle - CooperUnion<a/></p>
+{% endblock %}

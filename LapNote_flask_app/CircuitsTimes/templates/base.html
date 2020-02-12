@@ -1,0 +1,97 @@
+<html>
+<head>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/materialize.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}{% endblock %} - LapNote </title>
+</head>
+<body>
+    <!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="{{url_for('newtime')}}">Add new time</a></li>
+  <li><a href="{{url_for('account')}}">Update account</a></li>
+  <li class="divider"></li>
+  <li><a href="{{url_for('logout')}}">Log out</a></li>
+</ul>
+    <nav class="card-panel transparent">
+    <nav class="nav-extended teal darken-3">
+    <div class="nav-wrapper">
+        <div class="container">
+            <a href="{{url_for('index')}}" class="brand-logo">LapNote</a>
+         <div>
+            <!-- Navbar Right Side -->
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  {% if current_user.is_authenticated %}
+
+                    <!-- Dropdown Trigger -->
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">My LapNote</a></li>
+                  {% else %}
+                    <li><a href="{{url_for('login')}}">Login</a></li>
+                    <li><a href="{{url_for('register')}}">Register</a></li>
+                  {% endif %}
+                </ul>
+        </div>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{{url_for('index')}}">Home</a></li>
+                <li><a href="{{url_for('about')}}">About</a></li>
+                <li><a href="{{url_for('tracks')}}">Tracks</a></li>
+                <li><a href="{{url_for('cars')}}">Cars</a></li>
+                <li><a href="{{url_for('laptimes')}}">Lap Times</a></li>
+                <li><a href="{{url_for('bestlaps')}}">Best Laps</a></li>
+                <li><a href="{{url_for('mylaptimes')}}">My Lap Times</a></li>
+            </ul>
+        </div>
+            </ul>
+        </div>
+    </div>
+    </nav>
+</nav>
+<main>
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <div class="row center">
+        <div id="content">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="card-panel lime lighten-3-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+            {% block content %}{% endblock %}</div>
+      </div>
+    </div>
+</div>
+</main>
+<footer class="page-footer grey darken-4">
+    <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">LapNote</h5>
+                <p class="grey-text text-lighten-4">Here you can find some links to contact or follow me.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="mailto:mateuszmajak.mm@gmail.com">My email</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/mateusz-majak-194a0013a/">My LinkedIn</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://rpubs.com/MateuszMajak">My RPubs</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2020 Copyright Mateusz Majak
+            </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

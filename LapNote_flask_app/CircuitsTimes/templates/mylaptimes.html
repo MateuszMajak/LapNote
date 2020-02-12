@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Tracks{% endblock %}
+{% block content %}
+    <h2>My Lap Times</h2>
+    <p>
+      Hello
+      {% if user %}
+        {{ user.name | striptags }}
+      {% endif %}!
+
+        <p>This is the My Lap Times section. Here is the list of Your Lap Times. For your convenience we present the
+    date when you added your time and also your average speed on the track. </p>
+    </p>
+     <table id='myTable' class="highlight">
+        <tbody>
+        {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+        {% endfor %}
+        </tbody>
+      </table>
+{% endblock %}
